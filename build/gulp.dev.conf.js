@@ -2,8 +2,6 @@ var gulp = require('gulp');
 var connect = require('gulp-connect'); // 服务
 var runSequence = require('run-sequence');
 var del = require('del')
-// var concat = require('gulp-concat');                            //- 多个文件合并为一个；
-// var minifyCss = require('gulp-minify-css');                     //- 压缩CSS为一行；
 var rev = require('gulp-rev');                                  //- 对文件名加MD5后缀
 var revCollector = require('gulp-rev-collector');               //- 路径替换
 gulp.task('revCss', function() {                                //- 创建一个名为 concat 的 task
