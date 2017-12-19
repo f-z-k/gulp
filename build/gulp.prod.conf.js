@@ -8,7 +8,7 @@ var rev = require('gulp-rev');                                  //- 对文件名
 var revCollector = require('gulp-rev-collector');               //- 路径替换
 function build () {
     gulp.task('revCss', function() {                                //- 创建一个名为 concat 的 task
-        return gulp.src('./targetFile/ceshi.css')    //- 需要处理的css文件，放到一个字符串数组里
+        return gulp.src('./targetFile/*.css')    //- 需要处理的css文件，放到一个字符串数组里
             .pipe(rev())                                            //- 文件名加MD5后缀
             .pipe(cleanCSS())                                       // css 压缩
             .pipe(gulp.dest('./dist'))                              //- 输出文件本地

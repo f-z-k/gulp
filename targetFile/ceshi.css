@@ -3,10 +3,10 @@
 	padding: 0px;
 }
 div {
-	width: 1000px;
-	height: 700px;
+	width: 100px;
+	height: 800px;
 	background-color:#444;
 }
 p {
-
+	width: 1000px;
 }
