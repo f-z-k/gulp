@@ -1,5 +1,4 @@
 var gulp = require('gulp');
-var connect = require('gulp-connect'); // 服务
 var runSequence = require('run-sequence');
 var del = require('del')
 var rev = require('gulp-rev');                                  //- 对文件名加MD5后缀
@@ -23,7 +22,6 @@ function dev () {
         return gulp.src(['./rev/*/*.json', './targetFile/*.html'])   //- 读取 rev-manifest.json 文件以及需要进行css名替换的文件
             .pipe(revCollector())                                   //- 执行文件内css名的替换
             .pipe(gulp.dest('./dist/'))                     //- 替换后的文件输出的目录
-            .pipe(connect.reload());
     });
     gulp.task('clean', function(cb) {
         return del(['./dist/*'], cb)
@@ -39,30 +37,7 @@ function dev () {
             done
         );
     });
-    gulp.task('reloadHtml', function (done) {
-      condition = false;
-        runSequence(
-            ['clean'],
-            ['revCss'],
-            ['revJs'],
-            ['revHtml'],
-            done
-        );
-    });
-    gulp.task('watch', function () {
-      gulp.watch(['./targetFile/*.css'], ['reloadHtml']);
-      gulp.watch(['./targetFile/*.js'], ['reloadHtml']);
-      gulp.watch(['./targetFile/*.html'], ['reloadHtml']);
-    });
-    //启动服务
-    gulp.task('connect', function() {
-      connect.server({
-        root: 'dist',
-        port: 8888,
-        livereload: true
-      });
-    });
     // gulp.task('default', ['revHtml', 'revCss']);
-    gulp.task('dev', ['md5', 'connect', 'watch']);
+    gulp.task('build', ['md5']);
 }
-module.exports = dev
+module.exports = build
