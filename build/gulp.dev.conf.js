@@ -1,4 +1,5 @@
 var gulp = require('gulp');
+var babel = require("gulp-babel");
 var connect = require('gulp-connect'); // 服务
 var runSequence = require('run-sequence');
 var del = require('del')
@@ -14,6 +15,7 @@ function dev () {
     });
     gulp.task('revJs', function() {                                //- 创建一个名为 concat 的 task
         return gulp.src('./targetFile/ceshi.js')    //- 需要处理的js文件，放到一个字符串数组里
+            .pipe(babel())                          // 转换es5
             .pipe(rev())                                            //- 文件名加MD5后缀
             .pipe(gulp.dest('./dist'))                              //- 输出文件本地
             .pipe(rev.manifest())                                   //- 生成一个rev-manifest.json
