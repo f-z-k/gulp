@@ -16,7 +16,7 @@ function build () {
             .pipe(gulp.dest('./rev/css'));                             //- 将 rev-manifest.json 保存到 rev 目录内
     });
     gulp.task('revJs', function() {                                //- 创建一个名为 concat 的 task
-        return gulp.src('./targetFile/ceshi.js')    //- 需要处理的js文件，放到一个字符串数组里
+        return gulp.src('./targetFile/index.js')    //- 需要处理的js文件，放到一个字符串数组里
             .pipe(babel())                          // 转换es5
             .pipe(rev())                                            //- 文件名加MD5后缀
             .pipe(uglify())                                         // js 压缩
